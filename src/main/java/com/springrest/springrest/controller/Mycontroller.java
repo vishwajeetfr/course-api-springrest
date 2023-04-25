@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.springrest.springrest.entities.Courses;
 import com.springrest.springrest.services.CourseService;
-import com.springrest.springrest.services.CourseServiceImpl;
 
 @RestController
 public class Mycontroller { 
@@ -30,6 +30,11 @@ public class Mycontroller {
 	{
 		return (ArrayList<Courses>) this.courseService.getCourses() ;
 		
+	}
+	@GetMapping("courses/{courseId}")
+	public Courses getCourses(@PathVariable String courseId)
+	{
+		return this.courseService.getCourses(Long.parseUnsignedLong(courseId));
 	}
 
 }
